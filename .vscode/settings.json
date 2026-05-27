@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.inheritEnv": true,
+   "terminal.integrated.env.osx": {
+    "ANDROID_HOME": "/Users/talisma/Library/Android/sdk",
+    "JAVA_HOME": "/Users/talisma/.sdkman/candidates/java/current",
+    "PATH": "/Users/talisma/Library/Android/sdk/platform-tools:/Users/talisma/Library/Android/sdk/emulator:${env:PATH}"
+  }
+}

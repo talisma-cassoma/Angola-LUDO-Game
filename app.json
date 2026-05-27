@@ -3,5 +3,11 @@
   "displayName": "LudoApp",
   "android": {
     "package": "com.talismadev.ludoapp"
-  }
+  },
+  "extra": {
+    "eas": {
+      "projectId": "0bdaa1d4-9500-4019-b2b8-d4657902b52e"
+    }
+  },
+  "owner": "talismadev"
 }
