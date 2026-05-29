@@ -18,15 +18,20 @@ const MenuModal: React.FC<MenuModalProps> = ({ visible, onPressHide }) => {
     const dispatch = useAppDispatch();
 
     const handleNewGame = useCallback(() => {
-        dispatch(resetGame());
-        playSound('game_start');
-        dispatch(announceWinner(null))
-        onPressHide();
-    }, []);
+    console.log('resetGame', resetGame);
+    console.log('announceWinner', announceWinner);
+    console.log('playSound', playSound);
 
-    const handleHome = useCallback(() => {
-        goBack();
-    }, []);
+    dispatch(resetGame());
+    playSound('game_start');
+    dispatch(announceWinner(null));
+    onPressHide();
+}, []);
+
+ const handleHome = useCallback(() => {
+    console.log('goBack', goBack);
+    goBack();
+}, []);
 
     return (
         <Modal

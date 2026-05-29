@@ -65,7 +65,7 @@ const LudoBoardScreen = () => {
   return (
     <Wrapper >
       <TouchableOpacity
-        style={styles.iconContainer}
+       style={{alignSelf : 'flex-start', marginLeft : 20, marginTop : 20, marginBottom : 10}}
         activeOpacity={0.6}
         onPress={() => setMenuVisible(!menuVisible)}
       >

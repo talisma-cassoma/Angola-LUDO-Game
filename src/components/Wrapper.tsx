@@ -6,17 +6,22 @@ import { DEVICE_HEIGHT, DEVICE_WIDTH } from '$constants/dimensions'
 
 const Wrapper: React.FC<{ children: any, style?: any }> = ({ children, style }) => {
     return (
-        <SafeAreaProvider style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ImageBackground
             source={IMAGES.Background}
             resizeMode={'cover'}
-            style={{justifyContent: 'center', alignItems: 'center', flex: 1, height: DEVICE_HEIGHT, width: DEVICE_WIDTH, padding: 50, ...style}}
+            style={{justifyContent: 'center', alignItems: 'center', flex: 1, width: "100%", height: "100%"}}
         >
-             <View style={{ flex: 1 }}>
+        <SafeAreaProvider style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: DEVICE_HEIGHT, width: DEVICE_WIDTH  }}>
+             <View style={{ flex: 1, paddingTop: 20, 
+                paddingBottom: 150, paddingRight: 20, 
+                paddingLeft: 20, justifyContent: 'center', 
+                alignItems: 'center', position:"relative", 
+                ...style }}
+                >
                 {children}
              </View>
+             </SafeAreaProvider>
         </ImageBackground>
-        </SafeAreaProvider>
     )
 }
 

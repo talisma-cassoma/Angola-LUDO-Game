@@ -17,8 +17,7 @@ export const styles = StyleSheet.create({
         marginVertical : 40,
     },
     labelStyle : {
-        position : 'absolute',
-        bottom : 40,
+        marginTop : 24,
         color : COLORS.white,
         fontWeight : '800',
         opacity : 0.5,
