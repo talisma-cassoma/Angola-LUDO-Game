@@ -77,5 +77,5 @@ yarn-error.log
 
 
 #lock files
-yarn.lock
+#yarn.lock
 Podfile.lock
