@@ -18,7 +18,7 @@
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@reduxjs/toolkit": "^2.2.7",
-    "expo": "latest",
+    "expo": "~56.0.6",
     "expo-dev-client": "^56.0.14",
     "expo-linear-gradient": "~56.0.4",
     "expo-updates": "^56.0.17",
@@ -61,7 +61,7 @@
     "prettier": "2.8.8",
     "react-native-svg-transformer": "^1.5.0",
     "react-test-renderer": "18.2.0",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   },
   "engines": {
     "node": ">=18"
