@@ -6,6 +6,12 @@ eas channel:edit <channel-name> --branch <branch-name>
 acessar os tokens aqui,criar um variavel secrets no gthub e guardar la para o ci/cd
 https://expo.dev/accounts/talismadev/settings/access-tokens
 
+limpar o gradle
+cd android
+./gradlew clean
+cd ..
+rm -rf android/app/build
+rm -rf android/build
 
 
 comando pra fazer o build local e offline: 

@@ -28,10 +28,15 @@ const GradientButton: React.FC<GradientButtonProps> = ({
     return (
         <View
             style={{
+                alignItems: 'center',
+                height: 50,
+                width: "auto",
+                
                 borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#000',
+                //borderWidth: 2,
+                //borderColor: '#000',
                 marginVertical: 10,
+                justifyContent: 'center',
             }}>
             <TouchableOpacity
                 activeOpacity={0.8}

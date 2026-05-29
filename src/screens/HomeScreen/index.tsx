@@ -135,7 +135,7 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <Wrapper style={{ justifyContent: 'flex-start' }}>
+    <Wrapper >
       <Animated.View style={styles.imgContainer}>
         <Image
           source={IMAGES.Logo}

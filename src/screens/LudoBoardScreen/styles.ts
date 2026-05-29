@@ -8,9 +8,10 @@ export const styles = StyleSheet.create({
         left : 20
     },
     container : {
+        flex: 1,
         alignSelf : 'center',
         justifyContent : 'center',
-        height : DEVICE_HEIGHT * 0.5,
+        height : DEVICE_HEIGHT * 0.1,
         width : DEVICE_WIDTH
     },
     flexRow : {
@@ -20,8 +21,8 @@ export const styles = StyleSheet.create({
         paddingHorizontal : 30
     },
     ludoBoardContainer : {
-        width : '100%',
-        height : '100%',
+        width : DEVICE_WIDTH,
+        height : DEVICE_HEIGHT - 400,
         alignItems : 'center',
         padding : 10,
         backgroundColor : 'white'

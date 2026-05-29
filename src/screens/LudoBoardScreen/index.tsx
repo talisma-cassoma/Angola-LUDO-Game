@@ -63,7 +63,7 @@ const LudoBoardScreen = () => {
   },[isFocused])
 
   return (
-    <Wrapper>
+    <Wrapper >
       <TouchableOpacity
         style={styles.iconContainer}
         activeOpacity={0.6}
