@@ -1,0 +1,15 @@
+antes do build tem que fazer git commit 
+
+apos criar os chanels e as brunchs para OTA conectar eles assim:
+eas channel:edit <channel-name> --branch <branch-name>
+
+acessar os tokens aqui,criar um variavel secrets no gthub e guardar la para o ci/cd
+https://expo.dev/accounts/talismadev/settings/access-tokens
+
+
+
+comando pra fazer o build local e offline: 
+eas build -p android --local --output=app.apk --profile preview
+
+comando pra fazer o build no eas(online): 
+eas build -p android --profile preview
