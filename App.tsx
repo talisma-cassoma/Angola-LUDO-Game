@@ -1,57 +1,99 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
-import { persistor, store } from '$redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import RootNavigator from '$navigation/RootNavigator';
-import { View, Text, ActivityIndicator, StyleSheet, Animated, Image } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import * as Updates from 'expo-updates';
+
+import { persistor, store } from '$redux/store';
+import RootNavigator from '$navigation/RootNavigator';
 import { IMAGES } from '$assets/index';
 
-const App = () => {
+const OTA_TIMEOUT = 15000; // 15 segundos
 
+const App = () => {
   const [isCheckingForUpdate, setIsCheckingForUpdate] = useState(true);
+  const [status, setStatus] = useState('Verificando atualizações...');
 
   useEffect(() => {
-    async function onFetchUpdateAsync() {
+    let mounted = true;
+
+    const checkForUpdates = async () => {
       if (__DEV__) {
-        // Skip OTA checks during local Metro development
-        setIsCheckingForUpdate(false);
+        if (mounted) {
+          setIsCheckingForUpdate(false);
+        }
         return;
       }
 
       try {
-        // 1. Check if a newer bundle is available on the EAS server
-        const update = await Updates.checkForUpdateAsync();
+        setStatus('Verificando atualizações...');
+
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => {
+            reject(new Error('Tempo limite excedido ao verificar OTA.'));
+          }, OTA_TIMEOUT);
+        });
+
+        const update = await Promise.race([
+          Updates.checkForUpdateAsync(),
+          timeoutPromise,
+        ]) as Updates.UpdateCheckResult;
 
         if (update.isAvailable) {
-          // 2. Download the bundle to the device storage
+          setStatus('Baixando atualização...');
+
           await Updates.fetchUpdateAsync();
 
-          // 3. Immediately reload the application to launch the new code
-          await Updates.reloadAsync();
-        }
-      } catch (error) {
-        // Fall back gracefully if network requests fail or time out
-        console.error("Error fetching EAS update:", error);
-      } finally {
-        setIsCheckingForUpdate(false);
-      }
-    }
+          setStatus('Aplicando atualização...');
 
-    onFetchUpdateAsync();
+          await Updates.reloadAsync();
+
+          return;
+        }
+
+        setStatus('Aplicação atualizada.');
+      } catch (error) {
+        console.error('Erro ao verificar OTA:', error);
+
+        if (mounted) {
+          setStatus('Não foi possível verificar atualizações.');
+        }
+      } finally {
+        if (mounted) {
+          setTimeout(() => {
+            setIsCheckingForUpdate(false);
+          }, 500);
+        }
+      }
+    };
+
+    checkForUpdates();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  // Show a placeholder UI while checking and downloading code updates
   if (isCheckingForUpdate) {
     return (
       <View style={styles.container}>
-        <Animated.View
-          style={[styles.imgContainer, { transform: [{ scale: 1 }] }]}
-        >
-          <Image resizeMode={'contain'} source={IMAGES.Logo} style={styles.img} />
-        </Animated.View>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text style={styles.text}>Checking for critical updates...</Text>
+        <View style={styles.logoContainer}>
+          <Image
+            resizeMode="contain"
+            source={IMAGES.Logo}
+            style={styles.logo}
+          />
+        </View>
+
+        <ActivityIndicator
+          size="large"
+          color="#0066FF"
+          style={styles.loader}
+        />
+
+        <Text style={styles.text}>
+          {status}
+        </Text>
       </View>
     );
   }
@@ -62,26 +104,40 @@ const App = () => {
         <RootNavigator />
       </PersistGate>
     </Provider>
-  )
-}
+  );
+};
 
-
-export default App
-
+export default App;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { marginTop: 10, fontSize: 16 },
-  imgContainer: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 1,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 24,
   },
-  img: {
+
+  logoContainer: {
     width: '80%',
-    height: undefined,
-    aspectRatio: 1
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  logo: {
+    width: '100%',
+    height: '100%',
+  },
+
+  loader: {
+    marginTop: 20,
+  },
+
+  text: {
+    marginTop: 16,
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#333',
   },
 });

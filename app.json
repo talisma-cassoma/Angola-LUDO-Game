@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "icon": "./assets/icon2.png",
     "android": {
-       "adaptiveIcon": {
+      "adaptiveIcon": {
         "foregroundImage": "./assets/icon2.png",
         "backgroundColor": "#ffffff"
       },
@@ -22,9 +22,8 @@
     },
     "updates": {
       "url": "https://u.expo.dev/0bdaa1d4-9500-4019-b2b8-d4657902b52e",
-      "fallbackToCacheURL": true,
       "checkOnLaunch": "ALWAYS",
-      "fallbackToCacheTimeout": 30000 
+      "fallbackToCacheTimeout": 30000
     },
     "ios": {}
   }
