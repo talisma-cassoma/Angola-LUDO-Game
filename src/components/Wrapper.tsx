@@ -9,18 +9,27 @@ const Wrapper: React.FC<{ children: any, style?: any }> = ({ children, style }) 
         <ImageBackground
             source={IMAGES.Background}
             resizeMode={'cover'}
-            style={{justifyContent: 'center', alignItems: 'center', flex: 1, width: "100%", height: "100%"}}
+            style={{
+                justifyContent: 'center', alignItems: 'center', flex: 1,
+                // width : DEVICE_WIDTH,
+                //  height : DEVICE_HEIGHT,  
+                margin: 0
+            }}
         >
-        <SafeAreaProvider style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height:"100%", width: "auto"  }}>
-             <View style={{ flex: 1, paddingTop: 20, 
-                paddingBottom: 150, paddingRight: 20, 
-                paddingLeft: 20, justifyContent: 'center', 
-                alignItems: 'center', position:"relative", 
-                ...style }}
-                >
+            <SafeAreaProvider style={{
+                flex: 1,
+                paddingTop: 20,
+                paddingBottom: 100,
+                paddingRight: 20,
+                paddingLeft: 20,
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                width: '100%', height: '100%',
+                boxSizing : 'border-box', 
+                 ...style
+            }}>
                 {children}
-             </View>
-             </SafeAreaProvider>
+            </SafeAreaProvider>
         </ImageBackground>
     )
 }
@@ -33,8 +42,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    safeArea : {
-        width : DEVICE_WIDTH,
-        height : DEVICE_HEIGHT
+    safeArea: {
+        width: DEVICE_WIDTH,
+        height: DEVICE_HEIGHT
     }
 })

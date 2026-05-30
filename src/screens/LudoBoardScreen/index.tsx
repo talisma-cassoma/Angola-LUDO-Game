@@ -1,7 +1,6 @@
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import Wrapper from '$components/Wrapper'
-import { styles } from './styles'
 import { IMAGES } from '$assets/images'
 import Dice from '$components/Dice'
 import { COLORS } from '$constants/colors'
@@ -33,18 +32,18 @@ const LudoBoardScreen = () => {
   const opacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if(isFocused){
+    if (isFocused) {
       setShowStartIMG(true);
       const blinkAnimation = Animated.loop(Animated.sequence([
-        Animated.timing(opacity,{
-          toValue : 0,
-          duration : 500,
-          useNativeDriver : true
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true
         }),
-        Animated.timing(opacity,{
-          toValue : 1,
-          duration : 500,
-          useNativeDriver : true
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true
         })
       ]));
 
@@ -53,31 +52,34 @@ const LudoBoardScreen = () => {
       const timeout = setTimeout(() => {
         blinkAnimation.stop();
         setShowStartIMG(false);
-      },2500);
+      }, 2500);
 
       return () => {
         blinkAnimation.stop();
         clearTimeout(timeout);
       }
     }
-  },[isFocused])
+  }, [isFocused])
 
   return (
-    <Wrapper style={{  overflow : 'scroll', alignItems : 'space-between' }}>
+    <Wrapper style={styles.screen}>
       <TouchableOpacity
-       style={{alignSelf : 'flex-start', marginLeft : 20, marginTop : 20, marginBottom : 10}}
+        style={styles.menuButton}
         activeOpacity={0.6}
         onPress={() => setMenuVisible(!menuVisible)}
       >
         <Image
           source={IMAGES.Menu}
-          style={{ width: 30, height: 30 }}
-          resizeMode={'contain'}
+          style={styles.menuIcon}
+          resizeMode="contain"
         />
       </TouchableOpacity>
 
-      <View style={[styles.container, { alignItems : 'center' }]}>
-        <View style={styles.flexRow} pointerEvents={isDiceTouched ? 'none' : 'auto'}>
+      <View style={styles.container}>
+        <View
+          style={styles.diceRow}
+          pointerEvents={isDiceTouched ? 'none' : 'auto'}
+        >
           <Dice color={COLORS.green} player={2} data={player2} />
           <Dice color={COLORS.yellow} rotate player={3} data={player3} />
         </View>
@@ -107,28 +109,72 @@ const LudoBoardScreen = () => {
           </View>
         </View>
 
-        <View style={styles.flexRow} pointerEvents={isDiceTouched ? 'none' : 'auto'}>
+        <View
+          style={styles.diceRow}
+          pointerEvents={isDiceTouched ? 'none' : 'auto'}
+        >
           <Dice color={COLORS.red} player={1} data={player1} />
           <Dice color={COLORS.blue} rotate player={4} data={player4} />
         </View>
       </View>
-
-      {showStartIMG && (
-        <Animated.Image
-          source={IMAGES.Start}
-          style={{ width: DEVICE_WIDTH * 0.5, height: DEVICE_WIDTH * 0.2, position: 'absolute', opacity, alignSelf : 'center', top : DEVICE_HEIGHT * 0.4 }}
-        />
-      )}
-
-      {
-        menuVisible && <MenuModal visible={menuVisible} onPressHide={() => setMenuVisible(false)} />
-      }
-
-      {
-        winner !== null && <WinnerModal winner={winner} />
-      }
     </Wrapper>
   )
 }
 
 export default LudoBoardScreen
+
+
+export const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
+
+  menuButton: {
+    width: 30,
+    height: 30,
+    marginTop: 20,
+    marginLeft: 20,
+    marginBottom: 10,
+  },
+
+  menuIcon: {
+    width: '100%',
+    height: '100%',
+  },
+
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  diceRow: {
+    width: '100%',
+    height: 80,
+    paddingHorizontal: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  ludoBoardContainer: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    minHeight: 200,
+    minWidth: 100,
+    //aspectRatio: 0.6, // mantém o tabuleiro quadrado
+    backgroundColor: '#FFF',
+    padding: 4,
+  },
+
+  plotContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+
+  pathContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+});
