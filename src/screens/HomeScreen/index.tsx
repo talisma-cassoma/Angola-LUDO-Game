@@ -161,14 +161,14 @@ const HomeScreen = () => {
             playSound(soundName);
           }}
         >
-          <LottieView
+          {/* <LottieView
             hardwareAccelerationAndroid
             source={ANIMATATIONS.Witch}
             autoPlay
             loop
             speed={1}
             style={styles.witch}
-          />
+          /> */}
         </Pressable>
       </Animated.View>
 

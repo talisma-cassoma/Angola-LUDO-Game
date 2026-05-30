@@ -1,7 +1,7 @@
 export const IMAGES = {
     CardLogo :  require('./card-logo.png'),
     Arrow :  require('./arrow.png'),
-    Background :  require('./bg.jpg'),
+    Background :  require('./bg.png'),
     Logo :  require('./logo.png'),
     Menu :  require('./menu.png'),
     Start :  require('./start.png'),
