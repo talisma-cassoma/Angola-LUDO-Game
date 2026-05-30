@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: COLORS.white,
-        fontSize: RFValue(16),
+        fontSize: RFValue(12),
         width: '70%',
         textAlign: 'left',
         fontFamily: 'Philosopher-Bold'

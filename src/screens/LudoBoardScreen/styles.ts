@@ -10,22 +10,23 @@ export const styles = StyleSheet.create({
     container : {
         flex: 1,
         alignSelf : 'center',
-        justifyContent : 'center',
-        height : DEVICE_HEIGHT * 0.1,
-        width : DEVICE_WIDTH
+        justifyContent : 'space-between',
+        height : "auto",
+        width :"auto"
     },
     flexRow : {
         justifyContent : 'space-between',
         alignItems : 'center',
         flexDirection : 'row',
-        paddingHorizontal : 30
+        paddingHorizontal : 30,
+        width : '100%',
     },
     ludoBoardContainer : {
-        width : DEVICE_WIDTH,
-        height : DEVICE_HEIGHT - 400,
+        width : 380,
+        height : 400,
         alignItems : 'center',
         padding : 10,
-        backgroundColor : 'white'
+        backgroundColor : 'white',
     },
     plotContainer : {
         width : '100%',

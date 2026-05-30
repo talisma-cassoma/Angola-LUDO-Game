@@ -63,7 +63,7 @@ const LudoBoardScreen = () => {
   },[isFocused])
 
   return (
-    <Wrapper >
+    <Wrapper style={{  overflow : 'scroll', alignItems : 'space-between' }}>
       <TouchableOpacity
        style={{alignSelf : 'flex-start', marginLeft : 20, marginTop : 20, marginBottom : 10}}
         activeOpacity={0.6}
@@ -76,7 +76,7 @@ const LudoBoardScreen = () => {
         />
       </TouchableOpacity>
 
-      <View style={styles.container}>
+      <View style={[styles.container, { alignItems : 'center' }]}>
         <View style={styles.flexRow} pointerEvents={isDiceTouched ? 'none' : 'auto'}>
           <Dice color={COLORS.green} player={2} data={player2} />
           <Dice color={COLORS.yellow} rotate player={3} data={player3} />
@@ -116,7 +116,7 @@ const LudoBoardScreen = () => {
       {showStartIMG && (
         <Animated.Image
           source={IMAGES.Start}
-          style={{ width: DEVICE_WIDTH * 0.5, height: DEVICE_WIDTH * 0.2, position: 'absolute', opacity }}
+          style={{ width: DEVICE_WIDTH * 0.5, height: DEVICE_WIDTH * 0.2, position: 'absolute', opacity, alignSelf : 'center', top : DEVICE_HEIGHT * 0.4 }}
         />
       )}
 

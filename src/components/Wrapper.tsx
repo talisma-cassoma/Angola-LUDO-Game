@@ -11,7 +11,7 @@ const Wrapper: React.FC<{ children: any, style?: any }> = ({ children, style }) 
             resizeMode={'cover'}
             style={{justifyContent: 'center', alignItems: 'center', flex: 1, width: "100%", height: "100%"}}
         >
-        <SafeAreaProvider style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: DEVICE_HEIGHT, width: DEVICE_WIDTH  }}>
+        <SafeAreaProvider style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height:"100%", width: "auto"  }}>
              <View style={{ flex: 1, paddingTop: 20, 
                 paddingBottom: 150, paddingRight: 20, 
                 paddingLeft: 20, justifyContent: 'center', 
